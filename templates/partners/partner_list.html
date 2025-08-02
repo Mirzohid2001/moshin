@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Партнеры - Isomer Oil{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" style="min-height: 40vh;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <div class="hero-content">
+                    <h1 class="hero-title animate-text">
+                        Наши партнеры
+                    </h1>
+                    <p class="hero-subtitle">
+                        Долгосрочное сотрудничество с ведущими компаниями отрасли
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="section">
+    <div class="container">
+        <div class="row">
+            {% for partner in partners %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card partner-card h-100">
+                    <div class="card-body text-center">
+                        {% if partner.logo %}
+                        <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="partner-logo mb-3">
+                        {% else %}
+                        <div class="partner-logo mb-3 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-building fa-3x text-muted"></i>
+                        </div>
+                        {% endif %}
+                        <h5 class="card-title">{{ partner.name }}</h5>
+                        <p class="card-text">{{ partner.description|truncatewords:20 }}</p>
+                        
+                        <div class="partner-info">
+                            {% if partner.website %}
+                            <a href="{{ partner.website }}" target="_blank" class="btn btn-outline-primary btn-sm mb-2">
+                                <i class="fas fa-globe me-1"></i>
+                                Веб-сайт
+                            </a>
+                            {% endif %}
+                            
+                            {% if partner.email %}
+                            <a href="mailto:{{ partner.email }}" class="btn btn-outline-secondary btn-sm mb-2">
+                                <i class="fas fa-envelope me-1"></i>
+                                Email
+                            </a>
+                            {% endif %}
+                            
+                            {% if partner.phone %}
+                            <a href="tel:{{ partner.phone }}" class="btn btn-outline-success btn-sm mb-2">
+                                <i class="fas fa-phone me-1"></i>
+                                Телефон
+                            </a>
+                            {% endif %}
+                        </div>
+                        
+                        {% if partner.address %}
+                        <small class="text-muted">
+                            <i class="fas fa-map-marker-alt me-1"></i>
+                            {{ partner.address }}
+                        </small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Информация о партнерах будет добавлена в ближайшее время
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Partnerships Section -->
+{% if partnerships %}
+<section class="section bg-light">
+    <div class="container">
+        <h2 class="section-title">Наше сотрудничество</h2>
+        <div class="row">
+            {% for partnership in partnerships %}
+            <div class="col-lg-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            {% if partnership.partner.logo %}
+                            <img src="{{ partnership.partner.logo.url }}" alt="{{ partnership.partner.name }}" class="partner-logo me-3" style="width: 60px; height: 60px;">
+                            {% else %}
+                            <div class="partner-logo me-3 d-flex align-items-center justify-content-center bg-light rounded" style="width: 60px; height: 60px;">
+                                <i class="fas fa-building text-muted"></i>
+                            </div>
+                            {% endif %}
+                            <div>
+                                <h5 class="card-title mb-1">{{ partnership.partner.name }}</h5>
+                                <span class="badge bg-primary">{{ partnership.get_partnership_type_display }}</span>
+                            </div>
+                        </div>
+                        
+                        <p class="card-text">{{ partnership.description }}</p>
+                        
+                        <div class="partnership-details">
+                            <small class="text-muted">
+                                <i class="fas fa-calendar me-1"></i>
+                                Сотрудничаем с {{ partnership.start_date|date:"d.m.Y" }}
+                                {% if partnership.end_date %}
+                                по {{ partnership.end_date|date:"d.m.Y" }}
+                                {% endif %}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Partnership Types Section -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Типы партнерства</h2>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <div class="capability-icon mb-3">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h5 class="card-title">Поставщики</h5>
+                        <p class="card-text">Надежные поставщики сырья и оборудования для обеспечения высокого качества продукции</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <div class="capability-icon mb-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5 class="card-title">Клиенты</h5>
+                        <p class="card-text">Долгосрочные клиенты, доверяющие качеству нашей продукции</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <div class="capability-icon mb-3">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h5 class="card-title">Дистрибьюторы</h5>
+                        <p class="card-text">Партнеры по распространению нашей продукции в различных регионах</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center h-100">
+                    <div class="card-body">
+                        <div class="capability-icon mb-3">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h5 class="card-title">Сервисные партнеры</h5>
+                        <p class="card-text">Компании, предоставляющие техническое обслуживание и поддержку</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Become Partner Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-title">Стать партнером</h2>
+                <p class="lead mb-4">
+                    Мы всегда открыты для новых партнерских отношений. Если вы заинтересованы в сотрудничестве, 
+                    свяжитесь с нами для обсуждения возможностей.
+                </p>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="capability-item">
+                            <div class="capability-icon">
+                                <i class="fas fa-handshake"></i>
+                            </div>
+                            <h5>Взаимная выгода</h5>
+                            <p>Создаем условия для взаимовыгодного сотрудничества</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="capability-item">
+                            <div class="capability-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h5>Развитие бизнеса</h5>
+                            <p>Помогаем партнерам развивать их бизнес</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="capability-item">
+                            <div class="capability-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h5>Надежность</h5>
+                            <p>Гарантируем выполнение всех обязательств</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'contact:contact' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-phone me-2"></i>
+                    Обсудить сотрудничество
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" style="background: var(--gradient-primary);">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="text-white mb-4">Готовы к партнерству?</h2>
+                <p class="text-white mb-4">
+                    Свяжитесь с нами для обсуждения возможностей сотрудничества
+                </p>
+                <a href="{% url 'contact:contact' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-handshake me-2"></i>
+                    Связаться с нами
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

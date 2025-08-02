@@ -1,0 +1,833 @@
+/* Основные переменные */
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #ffd700;
+    --accent-color: #8b4513;
+    --dark-color: #0d1117;
+    --light-color: #f8f9fa;
+    --text-color: #333;
+    --text-light: #6c757d;
+    --gradient-primary: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    --gradient-secondary: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+    
+    /* Неоновые цвета для нефтяной системы */
+    --neon-gold: #ffd700;
+    --neon-orange: #ff6b35;
+    --neon-red: #ff4500;
+    --neon-yellow: #ffff00;
+    --neon-amber: #ff8c00;
+    --neon-cyan: #00ffff;
+    --neon-magenta: #ff00ff;
+    --neon-lime: #00ff00;
+    --neon-pink: #ff1493;
+    --neon-violet: #8a2be2;
+    
+    /* Градиенты с неоновыми эффектами */
+    --neon-gradient-1: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    --neon-gradient-2: linear-gradient(45deg, #1a1a1a 0%, #2d2d2d 25%, #1a1a1a 50%, #2d2d2d 75%, #1a1a1a 100%);
+    --neon-gradient-3: radial-gradient(circle at 30% 20%, #2d2d2d 0%, #1a1a1a 50%, #0d1117 100%);
+}
+
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-color);
+}
+
+/* Навигация */
+.navbar {
+    background: var(--neon-gradient-1);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow), 0 0 20px rgba(0, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    padding: 1rem 0;
+    animation: neonBackground 8s ease-in-out infinite;
+    position: relative;
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 255, 0.1) 50%, transparent 100%);
+    animation: neonFloat 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color) !important;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: #fff !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link {
+    color: #fff !important;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--secondary-color) !important;
+    transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--secondary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+@keyframes oilDrip {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(2px);
+    }
+}
+
+/* Неоновые анимации */
+@keyframes neonPulse {
+    0%, 100% {
+        box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 15px var(--neon-cyan);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan), 0 0 30px var(--neon-cyan);
+    }
+}
+
+@keyframes neonGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px var(--neon-magenta), 0 0 10px var(--neon-magenta);
+    }
+    50% {
+        text-shadow: 0 0 10px var(--neon-magenta), 0 0 20px var(--neon-magenta), 0 0 30px var(--neon-magenta);
+    }
+}
+
+@keyframes neonBorder {
+    0%, 100% {
+        border-color: var(--neon-cyan);
+        box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 10px rgba(0, 255, 255, 0.1);
+    }
+    25% {
+        border-color: var(--neon-magenta);
+        box-shadow: 0 0 10px var(--neon-magenta), inset 0 0 10px rgba(255, 0, 255, 0.1);
+    }
+    50% {
+        border-color: var(--neon-lime);
+        box-shadow: 0 0 10px var(--neon-lime), inset 0 0 10px rgba(0, 255, 0, 0.1);
+    }
+    75% {
+        border-color: var(--neon-pink);
+        box-shadow: 0 0 10px var(--neon-pink), inset 0 0 10px rgba(255, 20, 147, 0.1);
+    }
+}
+
+@keyframes neonBackground {
+    0%, 100% {
+        background: var(--neon-gradient-1);
+    }
+    25% {
+        background: var(--neon-gradient-2);
+    }
+    50% {
+        background: var(--neon-gradient-3);
+    }
+    75% {
+        background: var(--neon-gradient-1);
+    }
+}
+
+@keyframes neonFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-5px) rotate(1deg);
+    }
+    50% {
+        transform: translateY(-10px) rotate(0deg);
+    }
+    75% {
+        transform: translateY(-5px) rotate(-1deg);
+    }
+}
+
+@keyframes neonSparkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+
+
+/* Сообщения */
+.messages-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 1050;
+    max-width: 400px;
+}
+
+.alert {
+    border: none;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 10px;
+}
+
+/* Главная секция */
+.hero-section {
+    background: var(--neon-gradient-3);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    animation: neonBackground 10s ease-in-out infinite;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(0, 255, 0, 0.1) 0%, transparent 50%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%2300ffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.4;
+    animation: neonFloat 8s ease-in-out infinite;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: var(--gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: neonGlow 3s ease-in-out infinite;
+    position: relative;
+}
+
+.hero-title::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta), var(--neon-lime), var(--neon-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0.7;
+    animation: neonGlow 4s ease-in-out infinite reverse;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.btn-primary {
+    background: var(--gradient-secondary);
+    border: 2px solid var(--neon-cyan);
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow), 0 0 10px rgba(0, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(0, 255, 255, 0.5);
+    color: var(--primary-color);
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+/* Секции */
+.section {
+    padding: 80px 0;
+}
+
+/* Неоновые эффекты для темных секций */
+.section[style*="background: var(--gradient-primary)"] {
+    background: var(--neon-gradient-2) !important;
+    animation: neonBackground 12s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.section[style*="background: var(--gradient-primary)"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(0, 255, 0, 0.05) 0%, transparent 60%);
+    animation: neonFloat 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-secondary);
+    border-radius: 2px;
+}
+
+/* Карточки */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Возможности */
+.capability-item {
+    text-align: center;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.capability-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.capability-icon {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    animation: neonGlow 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 8px var(--neon-cyan));
+    transition: all 0.3s ease;
+}
+
+.capability-icon:hover {
+    animation: neonSparkle 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px var(--neon-magenta));
+}
+
+/* Продукты */
+.product-card {
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta), var(--neon-lime));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(0, 255, 255, 0.3);
+    border-color: var(--neon-cyan);
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+.product-card:hover::before {
+    opacity: 0.1;
+}
+
+.product-image {
+    height: 250px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+/* Формы */
+.form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+}
+
+/* Партнеры */
+.partner-logo {
+    height: 80px;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: all 0.3s ease;
+}
+
+.partner-logo:hover {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+}
+
+/* Футер */
+.footer {
+    background: var(--neon-gradient-1);
+    color: #fff;
+    padding: 60px 0 30px;
+    animation: neonBackground 15s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+    animation: neonFloat 12s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.footer h5, .footer h6 {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer a:hover {
+    color: var(--secondary-color);
+}
+
+.social-links a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Анимации */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+    
+    .messages-container {
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+    
+
+    
+
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+    
+
+    
+
+}
+
+/* Дополнительные эффекты */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Карта */
+.map-container {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.map-container iframe {
+    border-radius: 15px;
+}
+
+/* Отзывы клиентов */
+.testimonial-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.testimonial-avatar {
+    color: var(--secondary-color);
+}
+
+.testimonial-rating {
+    font-size: 1.2rem;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+}
+
+.testimonial-author {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+/* Статистика в реальном времени */
+.stat-item {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--neon-cyan);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(0, 255, 255, 0.1) 50%, transparent 70%);
+    animation: neonFloat 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    animation: neonBorder 3s ease-in-out infinite;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.stat-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: neonGlow 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px var(--neon-cyan));
+}
+
+.stat-icon i {
+    animation: neonSparkle 3s ease-in-out infinite;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+.oil-drop {
+    position: relative;
+    overflow: hidden;
+}
+
+.oil-drop::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Стили для альтернативных иконок */
+.icon-fallback {
+    font-style: normal;
+    font-size: 1.2em;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.icon-fallback.icon-large {
+    font-size: 2em;
+}
+
+.icon-fallback.icon-xl {
+    font-size: 3em;
+}
+
+.icon-fallback.icon-xxl {
+    font-size: 4em;
+}
+
+/* Простые SVG иконки */
+.icon-svg {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+}
+
+.icon-industry::before {
+    content: "🏭";
+    font-size: 1.2em;
+}
+
+.icon-gas-pump::before {
+    content: "⛽";
+    font-size: 1.2em;
+}
+
+.icon-phone::before {
+    content: "📞";
+    font-size: 1.2em;
+}
+
+.icon-users::before {
+    content: "👥";
+    font-size: 1.2em;
+}
+
+.icon-truck::before {
+    content: "🚛";
+    font-size: 1.2em;
+}
+
+.icon-star::before {
+    content: "⭐";
+    font-size: 1.2em;
+}
+
+.icon-heart::before {
+    content: "❤️";
+    font-size: 1.2em;
+} 

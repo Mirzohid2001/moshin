@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }} - Isomer Oil{% endblock %}
+
+{% block content %}
+<!-- Blog Post Detail Section -->
+<section class="section">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'blog:home' %}">Главная</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'blog:blog_list' %}">Новости</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-8">
+                <article class="blog-post">
+                    <header class="mb-4">
+                        <h1 class="blog-post-title">{{ post.title }}</h1>
+                        <div class="blog-post-meta text-muted mb-3">
+                            <i class="fas fa-calendar me-2"></i>
+                            {{ post.created_at|date:"d.m.Y H:i" }}
+                        </div>
+                    </header>
+
+                    {% if post.image %}
+                    <div class="blog-post-image mb-4">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded">
+                    </div>
+                    {% endif %}
+
+                    <div class="blog-post-content">
+                        {{ post.content|linebreaks }}
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-lg-4">
+                <!-- Sidebar -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Информация о статье
+                        </h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="fas fa-calendar me-2"></i>
+                                Дата публикации: {{ post.created_at|date:"d.m.Y" }}
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-clock me-2"></i>
+                                Время: {{ post.created_at|date:"H:i" }}
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-user me-2"></i>
+                                Автор: Isomer Oil
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-share-alt me-2"></i>
+                            Поделиться
+                        </h5>
+                        <div class="d-flex gap-2">
+                            <a href="#" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-info btn-sm">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-success btn-sm">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="btn btn-outline-secondary btn-sm">
+                                <i class="fas fa-link"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Posts Section -->
+<section class="section bg-light">
+    <div class="container">
+        <h2 class="section-title">Другие новости</h2>
+        <div class="row">
+            <div class="col-12 text-center">
+                <a href="{% url 'blog:blog_list' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-newspaper me-2"></i>
+                    Все новости
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" style="background: var(--gradient-primary);">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="text-white mb-4">Хотите узнать больше?</h2>
+                <p class="text-white mb-4">
+                    Свяжитесь с нами для получения дополнительной информации о нашей компании
+                </p>
+                <a href="{% url 'contact:contact' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-phone me-2"></i>
+                    Связаться с нами
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .blog-post-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+    
+    .blog-post-image {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    
+    .blog-post-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .blog-post-content h2,
+    .blog-post-content h3,
+    .blog-post-content h4 {
+        color: var(--primary-color);
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .blog-post-content p {
+        margin-bottom: 1.5rem;
+    }
+    
+    .blog-post-content ul,
+    .blog-post-content ol {
+        margin-bottom: 1.5rem;
+        padding-left: 2rem;
+    }
+    
+    .blog-post-content blockquote {
+        border-left: 4px solid var(--secondary-color);
+        padding-left: 1rem;
+        margin: 2rem 0;
+        font-style: italic;
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 0 10px 10px 0;
+    }
+</style>
+{% endblock %} 
