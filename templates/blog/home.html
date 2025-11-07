@@ -2,22 +2,63 @@
 {% load static %}
 
 {% block title %}Isomer Oil - Главная{% endblock %}
+{% block seo_meta %}
+    <meta name="description" content="Главная страница Isomer Oil: нефтепродукты высшего качества, современные технологии переработки, надежные партнеры и быстрая доставка по Узбекистану.">
+    <meta name="keywords" content="Isomer Oil, нефтепродукты Узбекистан, поставки топлива, нефтепереработка, партнеры нефти, Isomer Oil Uzbekistan">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site_name }}">
+    <meta property="og:title" content="Isomer Oil — лидер нефтепереработки в Узбекистане">
+    <meta property="og:description" content="Инновационные мощности, экологичная переработка, контроль качества и надежные поставки нефтепродуктов. Узнайте больше об Isomer Oil.">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:image" content="{{ default_image }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Isomer Oil — лидер нефтепереработки в Узбекистане">
+    <meta name="twitter:description" content="Инновационные мощности, экологичная переработка, контроль качества и надежные поставки нефтепродуктов.">
+    <meta name="twitter:image" content="{{ default_image }}">
+    <meta name="twitter:site" content="@isomeroil">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Главная — Isomer Oil",
+      "url": "{{ canonical_url }}",
+      "primaryImageOfPage": "{{ default_image }}",
+      "description": "Нефтеперерабатывающий завод Isomer Oil — современные технологии, экологичная переработка и надежные поставки нефтепродуктов по всему Узбекистану."
+    }
+    </script>
+{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section">
-    <div class="container">
-        <div class="row align-items-center">
+    <div class="hero-decor">
+        <span class="hero-grid"></span>
+        <span class="hero-orb hero-orb--primary" data-parallax="18"></span>
+        <span class="hero-orb hero-orb--secondary" data-parallax="12"></span>
+        <span class="hero-orb hero-orb--accent" data-parallax="24"></span>
+        <span class="hero-particles"></span>
+    </div>
+    <div class="container position-relative">
+        <div class="row align-items-center g-5">
             <div class="col-lg-6">
-                <div class="hero-content">
-                    <h1 class="hero-title animate-text">
+                <div class="hero-content" data-animate="fade-up" data-delay="0.05s">
+                    <span class="highlight-badge mb-3 animate-text" data-animate="fade-up" data-delay="0.1s">
+                        <i class="fas fa-bolt"></i>
+                        Энергия будущего
+                    </span>
+                    <h1 class="hero-title animate-text" data-animate="scale" data-delay="0.18s">
                         ISOMER OIL
                     </h1>
-                    <p class="hero-subtitle">
+                    <p class="hero-subtitle" data-animate="fade-up" data-delay="0.22s">
                         Ведущий нефтеперерабатывающий завод Узбекистана, специализирующийся на производстве высококачественных нефтепродуктов для современной промышленности.
                     </p>
-                    <div class="hero-buttons">
-                        <a href="{% url 'products:product_list' %}" class="btn btn-primary me-3">
+                    <div class="hero-buttons" data-animate="fade-up" data-delay="0.3s">
+                        <a href="{% url 'products:product_list' %}" class="btn btn-primary">
                             <i class="fas fa-gas-pump me-2"></i>
                             Наши продукты
                         </a>
@@ -29,41 +70,54 @@
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="hero-image oil-drop">
-                    <img src="{% static 'images/neft-platforma.png' %}" alt="Нефтепереработка" class="img-fluid rounded">
+                <div class="hero-image oil-drop" data-animate="fade-left" data-delay="0.32s" data-parallax="16">
+                    <img src="{% static 'images/neft-platforma.png' %}" alt="Нефтепереработка" class="img-fluid">
                 </div>
             </div>
         </div>
     </div>
+    <div class="hero-scroll-indicator" data-animate="fade-up" data-delay="0.38s">
+        <span class="indicator-dot"></span>
+        <span class="indicator-line"></span>
+        <span class="indicator-label">Прокрутите вниз</span>
+    </div>
 </section>
+
+<div class="section-separator section-separator--light" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" role="presentation">
+        <path d="M0,52 C180,100 360,24 540,46 C720,68 900,12 1080,40 C1260,68 1350,36 1440,56 L1440,120 L0,120 Z"></path>
+    </svg>
+</div>
 
 <!-- About Section -->
 <section class="section bg-light">
     <div class="container">
-        <div class="row">
+        <div class="row g-5 align-items-center">
             <div class="col-lg-6">
-                <h2 class="section-title text-start">О компании</h2>
+                <h2 class="section-title text-start" data-animate="fade-up">О компании</h2>
+                <p class="section-lead text-start mb-4" data-animate="fade-up" data-delay="0.08s">
+                    Создаём энергию будущего, сочетая высокие стандарты производства, устойчивое развитие и заботу об окружающей среде.
+                </p>
                 {% if company_info %}
-                <h3>{{ company_info.title }}</h3>
-                <p class="lead">{{ company_info.content|truncatewords:50 }}</p>
-                <a href="{% url 'blog:about' %}" class="btn btn-primary">
+                <h3 class="mb-3" data-animate="fade-up" data-delay="0.12s">{{ company_info.title }}</h3>
+                <p class="lead" data-animate="fade-up" data-delay="0.18s">{{ company_info.content|truncatewords:50 }}</p>
+                <a href="{% url 'blog:about' %}" class="btn btn-primary" data-animate="fade-up" data-delay="0.25s">
                     Узнать больше
                 </a>
                 {% else %}
-                <h3>Isomer Oil - Ваш надежный партнер</h3>
-                <p class="lead">
-                    Мы являемся ведущим нефтеперерабатывающим предприятием, специализирующимся на производстве высококачественных нефтепродуктов. 
-                    Наша миссия - обеспечить энергетическую безопасность и устойчивое развитие региона.
+                <h3 class="mb-3" data-animate="fade-up" data-delay="0.12s">Isomer Oil - ваш надежный партнёр</h3>
+                <p class="lead mb-4" data-animate="fade-up" data-delay="0.18s">
+                    Мы являемся ведущим нефтеперерабатывающим предприятием, специализирующимся на производстве высококачественных нефтепродуктов. Наша миссия - обеспечить энергетическую безопасность и устойчивое развитие региона.
                 </p>
-                <a href="{% url 'blog:about' %}" class="btn btn-primary">
+                <a href="{% url 'blog:about' %}" class="btn btn-primary" data-animate="fade-up" data-delay="0.25s">
                     Узнать больше
                 </a>
                 {% endif %}
             </div>
             <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div class="capability-item">
+                <div class="row g-4 row-cols-1 row-cols-sm-2">
+                    <div class="col">
+                        <div class="capability-item interactive-card h-100 animate-delay-sm" data-animate="fade-up">
                             <div class="capability-icon">
                                 <i class="fas fa-industry"></i>
                             </div>
@@ -71,8 +125,8 @@
                             <p>Используем передовые технологии и оборудование</p>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="capability-item">
+                    <div class="col">
+                        <div class="capability-item interactive-card h-100 animate-delay-sm" data-animate="fade-up" data-delay="0.08s">
                             <div class="capability-icon">
                                 <i class="fas fa-award"></i>
                             </div>
@@ -80,8 +134,8 @@
                             <p>Соответствие международным стандартам</p>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="capability-item">
+                    <div class="col">
+                        <div class="capability-item interactive-card h-100 animate-delay-md" data-animate="fade-up">
                             <div class="capability-icon">
                                 <i class="fas fa-leaf"></i>
                             </div>
@@ -89,8 +143,8 @@
                             <p>Забота об окружающей среде</p>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4">
-                        <div class="capability-item">
+                    <div class="col">
+                        <div class="capability-item interactive-card h-100 animate-delay-md" data-animate="fade-up" data-delay="0.08s">
                             <div class="capability-icon">
                                 <i class="fas fa-users"></i>
                             </div>
@@ -108,11 +162,14 @@
 {% if capabilities %}
 <section class="section">
     <div class="container">
-        <h2 class="section-title">Наши возможности</h2>
-        <div class="row">
+        <h2 class="section-title" data-animate="fade-up">Наши возможности</h2>
+        <p class="section-lead" data-animate="fade-up" data-delay="0.1s">
+            Комплексные решения — от добычи до логистики. Мы сопровождаем каждый этап производственного цикла, обеспечивая стабильность и качество поставок.
+        </p>
+        <div class="row g-4">
             {% for capability in capabilities %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="capability-item">
+            <div class="col-lg-4 col-md-6">
+                <div class="capability-item interactive-card h-100" data-animate="fade-up" data-delay="0.{{ forloop.counter }}s">
                     <div class="capability-icon">
                         <i class="{{ capability.icon }}"></i>
                     </div>
@@ -129,59 +186,51 @@
 <!-- Products Preview Section -->
 <section class="section bg-light">
     <div class="container">
-        <h2 class="section-title">Наши продукты</h2>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card product-card">
-                    <div class="card-body text-center">
-                        <div class="capability-icon mb-3">
-                            <i class="fas fa-gas-pump"></i>
+        <h2 class="section-title" data-animate="fade-up">Наши продукты</h2>
+        <p class="section-lead" data-animate="fade-up" data-delay="0.1s">
+            Линейка продукции, ориентированная на промышленность, энергетику и транспорт. Каждое решение создано с учётом потребностей вашей отрасли.
+        </p>
+        {% if featured_products %}
+        <div class="row g-4">
+            {% for product in featured_products %}
+            <div class="col-lg-3 col-md-6">
+                <div class="card product-card interactive-card h-100 animate-delay-sm" data-animate="fade-up" data-delay="0.{{ forloop.counter }}s">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" class="product-image" alt="{{ product.name }}">
+                    {% else %}
+                    <div class="product-image product-image-placeholder">
+                        <i class="fas fa-oil-can fa-2x"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body d-flex flex-column gap-3">
+                        <div class="d-flex justify-content-between text-muted small text-uppercase">
+                            <span>{{ product.category.name }}</span>
+                            <strong>{{ product.price|floatformat:0 }} сум</strong>
                         </div>
-                        <h5 class="card-title">Бензин</h5>
-                        <p class="card-text">Высококачественный бензин различных марок</p>
-                        <a href="{% url 'products:product_list' %}" class="btn btn-primary">Подробнее</a>
+                        <h5 class="card-title mb-1">{{ product.name }}</h5>
+                        <p class="card-text flex-grow-1">{{ product.description|truncatewords:22 }}</p>
+                        <div class="d-flex justify-content-between align-items-center gap-2">
+                            <a href="{% url 'products:product_detail' product.slug %}" class="btn btn-outline-primary flex-grow-1">
+                                Подробнее
+                            </a>
+                            <a href="{% url 'products:product_detail' product.slug %}" class="btn btn-primary">
+                                <i class="fas fa-cart-plus me-2"></i>
+                                Заказать
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card product-card">
-                    <div class="card-body text-center">
-                        <div class="capability-icon mb-3">
-                            <i class="fas fa-tint"></i>
-                        </div>
-                        <h5 class="card-title">Солярка</h5>
-                        <p class="card-text">Качественная солярка для сельского хозяйства</p>
-                        <a href="{% url 'products:product_list' %}" class="btn btn-primary">Подробнее</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card product-card">
-                    <div class="card-body text-center">
-                        <div class="capability-icon mb-3">
-                            <i class="fas fa-truck"></i>
-                        </div>
-                        <h5 class="card-title">Дизель</h5>
-                        <p class="card-text">Экологичное дизельное топливо</p>
-                        <a href="{% url 'products:product_list' %}" class="btn btn-primary">Подробнее</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card product-card">
-                    <div class="card-body text-center">
-                        <div class="capability-icon mb-3">
-                            <i class="fas fa-industry"></i>
-                        </div>
-                        <h5 class="card-title">Нефтепродукты</h5>
-                        <p class="card-text">Широкий ассортимент нефтепродуктов</p>
-                        <a href="{% url 'products:product_list' %}" class="btn btn-primary">Подробнее</a>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
+        {% else %}
+        <div class="alert alert-info shadow-sm text-center d-inline-flex align-items-center px-4 py-3">
+            <i class="fas fa-info-circle me-2"></i>
+            Продукты будут добавлены совсем скоро.
+        </div>
+        {% endif %}
         <div class="text-center mt-4">
-            <a href="{% url 'products:product_list' %}" class="btn btn-primary btn-lg">
+            <a href="{% url 'products:product_list' %}" class="btn btn-primary btn-lg" data-animate="fade-up" data-delay="0.2s">
                 <i class="fas fa-list me-2"></i>
                 Все продукты
             </a>
@@ -189,44 +238,50 @@
     </div>
 </section>
 
+<div class="section-separator section-separator--brand section-separator--reverse" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" role="presentation">
+        <path d="M0,52 C180,100 360,24 540,46 C720,68 900,12 1080,40 C1260,68 1350,36 1440,56 L1440,0 L0,0 Z"></path>
+    </svg>
+</div>
+
 <!-- Stats Section -->
 <section class="section counters-section">
     <div class="container">
-        <div class="row text-center">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="capability-item">
-                    <div class="capability-icon">
+        <div class="row g-4 text-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-delay-sm" data-animate="tilt">
+                    <div class="stat-icon">
                         <i class="fas fa-industry"></i>
                     </div>
-                    <h3 class="counter" data-target="500">0</h3>
-                    <p>Тонн продукции в день</p>
+                    <h3 class="stat-number counter" data-target="500">0</h3>
+                    <p class="stat-label">Тонн продукции в день</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="capability-item">
-                    <div class="capability-icon">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-delay-sm" data-animate="tilt" data-delay="0.08s">
+                    <div class="stat-icon">
                         <i class="fas fa-users"></i>
                     </div>
-                    <h3 class="counter" data-target="150">0</h3>
-                    <p>Сотрудников</p>
+                    <h3 class="stat-number counter" data-target="150">0</h3>
+                    <p class="stat-label">Сотрудников</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="capability-item">
-                    <div class="capability-icon">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-delay-md" data-animate="tilt" data-delay="0.12s">
+                    <div class="stat-icon">
                         <i class="fas fa-globe"></i>
                     </div>
-                    <h3 class="counter" data-target="5">0</h3>
-                    <p>Лет опыта</p>
+                    <h3 class="stat-number counter" data-target="5">0</h3>
+                    <p class="stat-label">Лет опыта</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="capability-item">
-                    <div class="capability-icon">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-delay-md" data-animate="tilt" data-delay="0.18s">
+                    <div class="stat-icon">
                         <i class="fas fa-handshake"></i>
                     </div>
-                    <h3 class="counter" data-target="100">0</h3>
-                    <p>Довольных клиентов</p>
+                    <h3 class="stat-number counter" data-target="100">0</h3>
+                    <p class="stat-label">Довольных клиентов</p>
                 </div>
             </div>
         </div>
@@ -236,82 +291,85 @@
 <!-- Testimonials Section -->
 <section class="section bg-light">
     <div class="container">
-        <h2 class="section-title">Отзывы наших клиентов</h2>
-        <div class="row">
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card testimonial-card">
-                    <div class="card-body text-center">
-                        <div class="testimonial-avatar mb-3">
-                            <i class="fas fa-user-circle fa-3x text-primary"></i>
-                        </div>
-                        <div class="testimonial-rating mb-3">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                        </div>
-                        <p class="testimonial-text">
-                            "Высокое качество нефтепродуктов и надежное партнерство. 
-                            Сотрудничаем уже более 2 лет без нареканий!"
-                        </p>
-                        <h6 class="testimonial-author">"Ilg'or Paxlavon Savdo" MCHJ</h6>
+        <h2 class="section-title" data-animate="fade-up">Отзывы наших клиентов</h2>
+        <p class="section-lead" data-animate="fade-up" data-delay="0.1s">
+            Наши партнёры ценят стабильность, индивидуальный подход и качество на каждом этапе сотрудничества.
+        </p>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card testimonial-card interactive-card" data-animate="fade-up">
+                    <div class="testimonial-avatar mb-3">
+                        <i class="fas fa-user-circle"></i>
                     </div>
+                    <div class="testimonial-rating mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        «Высокое качество нефтепродуктов и надежное партнерство. Сотрудничаем уже более 2 лет без нареканий!»
+                    </p>
+                    <h6 class="testimonial-author">"Ilg'or Paxlavon Savdo" MCHJ</h6>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card testimonial-card">
-                    <div class="card-body text-center">
-                        <div class="testimonial-avatar mb-3">
-                            <i class="fas fa-user-circle fa-3x text-primary"></i>
-                        </div>
-                        <div class="testimonial-rating mb-3">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                        </div>
-                        <p class="testimonial-text">
-                            "Профессиональный подход и стабильные поставки. 
-                            Рекомендуем Isomer Oil как надежного поставщика!"
-                        </p>
-                        <h6 class="testimonial-author">"Unity Petro Industry" MCHJ</h6>
+            <div class="col-lg-4 col-md-6">
+                <div class="card testimonial-card interactive-card animate-delay-sm" data-animate="fade-up">
+                    <div class="testimonial-avatar mb-3">
+                        <i class="fas fa-user-circle"></i>
                     </div>
+                    <div class="testimonial-rating mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        «Профессиональный подход и стабильные поставки. Рекомендуем Isomer Oil как надежного поставщика!»
+                    </p>
+                    <h6 class="testimonial-author">"Unity Petro Industry" MCHJ</h6>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card testimonial-card">
-                    <div class="card-body text-center">
-                        <div class="testimonial-avatar mb-3">
-                            <i class="fas fa-user-circle fa-3x text-primary"></i>
-                        </div>
-                        <div class="testimonial-rating mb-3">
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                            <i class="fas fa-star text-warning"></i>
-                        </div>
-                        <p class="testimonial-text">
-                            "Отличное качество продукции и своевременная доставка. 
-                            Долгосрочное сотрудничество на взаимовыгодных условиях!"
-                        </p>
-                        <h6 class="testimonial-author">"CBRC BUKHARA-L3 DM"</h6>
+            <div class="col-lg-4 col-md-6">
+                <div class="card testimonial-card interactive-card animate-delay-md" data-animate="fade-up">
+                    <div class="testimonial-avatar mb-3">
+                        <i class="fas fa-user-circle"></i>
                     </div>
+                    <div class="testimonial-rating mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        «Отличное качество продукции и своевременная доставка. Долгосрочное сотрудничество на взаимовыгодных условиях!»
+                    </p>
+                    <h6 class="testimonial-author">"CBRC BUKHARA-L3 DM"</h6>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<div class="section-separator section-separator--brand section-separator--reverse" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" role="presentation">
+        <path d="M0,52 C180,100 360,24 540,46 C720,68 900,12 1080,40 C1260,68 1350,36 1440,56 L1440,0 L0,0 Z"></path>
+    </svg>
+</div>
+
 <!-- Real-time Statistics Section -->
 <section class="section" style="background: var(--gradient-primary);">
     <div class="container">
-        <h2 class="section-title text-white">Статистика в реальном времени</h2>
-        <div class="row text-center">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="stat-item">
+        <h2 class="section-title text-white" data-animate="fade-up">Статистика в реальном времени</h2>
+        <p class="section-lead text-white-50" data-animate="fade-up" data-delay="0.1s">
+            Мы отслеживаем ключевые показатели в реальном времени, чтобы вы всегда были уверены в сроках поставок и объёмах производства.
+        </p>
+        <div class="row g-4 text-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item" data-animate="tilt">
                     <div class="stat-icon">
                         <i class="fas fa-truck text-warning"></i>
                     </div>
@@ -319,8 +377,8 @@
                     <p class="stat-label">Доставок сегодня</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="stat-item">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-delay-sm" data-animate="tilt">
                     <div class="stat-icon">
                         <i class="fas fa-gas-pump text-warning"></i>
                     </div>
@@ -328,8 +386,8 @@
                     <p class="stat-label">Литров продано</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="stat-item">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-delay-md" data-animate="tilt">
                     <div class="stat-icon">
                         <i class="fas fa-users text-warning"></i>
                     </div>
@@ -337,8 +395,8 @@
                     <p class="stat-label">Активных клиентов</p>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="stat-item">
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item animate-delay-lg" data-animate="tilt">
                     <div class="stat-icon">
                         <i class="fas fa-clock text-warning"></i>
                     </div>
@@ -350,24 +408,30 @@
     </div>
 </section>
 
+<div class="section-separator section-separator--light section-separator--reverse" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" role="presentation">
+        <path d="M0,52 C180,100 360,24 540,46 C720,68 900,12 1080,40 C1260,68 1350,36 1440,56 L1440,0 L0,0 Z"></path>
+    </svg>
+</div>
+
 <!-- Recent News Section -->
 {% if recent_posts %}
 <section class="section bg-light">
     <div class="container">
-        <h2 class="section-title">Последние новости</h2>
-        <div class="row">
+        <h2 class="section-title" data-animate="fade-up">Последние новости</h2>
+        <div class="row g-4">
             {% for post in recent_posts %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 animate-delay-sm" data-animate="fade-up" data-delay="0.{{ forloop.counter }}s">
                     {% if post.image %}
                     <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
                     {% endif %}
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{ post.title }}</h5>
-                        <p class="card-text">{{ post.excerpt }}</p>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <p class="card-text flex-grow-1">{{ post.excerpt }}</p>
+                        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
                             <small class="text-muted">{{ post.created_at|date:"d.m.Y" }}</small>
-                            <a href="{% url 'blog:blog_detail' post.slug %}" class="btn btn-primary btn-sm">
+                            <a href="{% url 'blog:blog_detail' post.slug %}" class="btn btn-outline-primary btn-sm">
                                 Читать
                             </a>
                         </div>
@@ -377,7 +441,7 @@
             {% endfor %}
         </div>
         <div class="text-center mt-4">
-            <a href="{% url 'blog:blog_list' %}" class="btn btn-primary btn-lg">
+            <a href="{% url 'blog:blog_list' %}" class="btn btn-primary btn-lg" data-animate="fade-up" data-delay="0.2s">
                 <i class="fas fa-newspaper me-2"></i>
                 Все новости
             </a>
@@ -386,24 +450,34 @@
 </section>
 {% endif %}
 
+<div class="section-separator section-separator--brand section-separator--reverse" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" role="presentation">
+        <path d="M0,52 C180,100 360,24 540,46 C720,68 900,12 1080,40 C1260,68 1350,36 1440,56 L1440,0 L0,0 Z"></path>
+    </svg>
+</div>
+
 <!-- CTA Section -->
 <section class="section" style="background: var(--gradient-primary);">
     <div class="container">
-        <div class="row text-center">
-            <div class="col-lg-8 mx-auto">
-                <h2 class="text-white mb-4">Готовы к сотрудничеству?</h2>
-                <p class="text-white mb-4">
-                    Свяжитесь с нами для получения подробной информации о наших продуктах и услугах
-                </p>
-                <div class="d-flex justify-content-center gap-3 flex-wrap">
-                    <a href="{% url 'contact:contact' %}" class="btn btn-primary btn-lg">
-                        <i class="fas fa-phone me-2"></i>
-                        Связаться с нами
-                    </a>
-                    <a href="{% url 'products:product_list' %}" class="btn btn-outline-light btn-lg">
-                        <i class="fas fa-list me-2"></i>
-                        Посмотреть продукты
-                    </a>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card glass-effect text-center p-4" data-animate="fade-up">
+                    <div class="card-body">
+                        <h2 class="text-white mb-3">Готовы к сотрудничеству?</h2>
+                        <p class="text-white-50 mb-4">
+                            Свяжитесь с нами для получения подробной информации о продуктах и услугах. Команда Isomer Oil подготовит индивидуальное предложение под ваш бизнес.
+                        </p>
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <a href="{% url 'contact:contact' %}" class="btn btn-primary btn-lg">
+                                <i class="fas fa-phone me-2"></i>
+                                Связаться с нами
+                            </a>
+                            <a href="{% url 'products:product_list' %}" class="btn btn-outline-light btn-lg">
+                                <i class="fas fa-list me-2"></i>
+                                Посмотреть продукты
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -411,7 +485,8 @@
 </section>
 
 <!-- Scroll to Top Button -->
-<button class="scroll-to-top">
+<button class="scroll-to-top" aria-label="Наверх">
     <i class="fas fa-chevron-up"></i>
 </button>
-{% endblock %} 
+{% endblock %}
+

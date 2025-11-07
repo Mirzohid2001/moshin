@@ -4,16 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a162d">
     <title>{% block title %}Isomer Oil - Нефтеперерабатывающий завод{% endblock %}</title>
-    
+    {% static 'images/neft-platforma.png' as default_meta_image_path %}
+    {% with site_origin=request.scheme|add:'://'|add:request.get_host canonical_url=site_origin|add:request.path default_image=site_origin|add:default_meta_image_path site_name='Isomer Oil' %}
+    {% block seo_meta %}
+    <meta name="description" content="Isomer Oil — ведущий нефтеперерабатывающий завод Узбекистана. Производим и поставляем качественные нефтепродукты, обеспечиваем надежное сотрудничество и быструю логистику.">
+    <meta name="keywords" content="Isomer Oil, нефтепродукты Узбекистан, нефтеперерабатывающий завод, оптовые поставки топлива, партнеры нефть">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site_name }}">
+    <meta property="og:title" content="Isomer Oil — нефть и нефтепродукты в Узбекистане">
+    <meta property="og:description" content="Комплексные решения в нефтепереработке, надежные поставки, современные технологии и экологичная ответственность.">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:image" content="{{ default_image }}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Isomer Oil — нефть и нефтепродукты в Узбекистане">
+    <meta name="twitter:description" content="Комплексные решения в нефтепереработке, надежные поставки, современные технологии и экологичная ответственность.">
+    <meta name="twitter:image" content="{{ default_image }}">
+    <meta name="twitter:site" content="@isomeroil">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "{{ site_name }}",
+      "url": "{{ site_origin }}",
+      "logo": "{{ default_image }}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Buxoro viloyati, Kogon shahar, Xoʻjabargi MFY, Amirobod ko'chasi, 91-b-uy",
+        "addressCountry": "UZ"
+      },
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+998 91 418 85 69",
+        "contactType": "customer service",
+        "areaServed": "UZ",
+        "availableLanguage": ["ru", "uz", "en"]
+      }],
+      "sameAs": [
+        "https://www.facebook.com/isomeroil",
+        "https://twitter.com/isomeroil",
+        "https://www.linkedin.com/company/isomeroil",
+        "https://www.instagram.com/isomeroil"
+      ]
+    }
+    </script>
+    {% endblock %}
+    {% endwith %}
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Font Awesome Alternative -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
@@ -52,6 +103,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact:contact' %}">Контакты</a>
                     </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary" href="{% url 'contact:contact' %}">
+                            <i class="fas fa-paper-plane me-2"></i>
+                            Связаться
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -87,10 +144,10 @@
                         Ведущий нефтеперерабатывающий завод, специализирующийся на производстве высококачественных нефтепродуктов.
                     </p>
                     <div class="social-links">
-                        <a href="#" class="me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/isomeroil" target="_blank" rel="noopener" class="me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/isomeroil" target="_blank" rel="noopener" class="me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.linkedin.com/company/isomeroil" target="_blank" rel="noopener" class="me-3"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/isomeroil" target="_blank" rel="noopener" class="me-3"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 
@@ -107,10 +164,10 @@
                 <div class="col-lg-3 col-md-6 mb-4">
                     <h6 class="text-white mb-3">Продукты</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="text-light">Бензин</a></li>
-                        <li><a href="#" class="text-light">Дизельное топливо</a></li>
-                        <li><a href="#" class="text-light">Масла</a></li>
-                        <li><a href="#" class="text-light">Смазки</a></li>
+                        <li><a href="{% url 'products:product_list' %}" class="text-light">Бензин</a></li>
+                        <li><a href="{% url 'products:product_list' %}" class="text-light">Дизельное топливо</a></li>
+                        <li><a href="{% url 'products:product_list' %}" class="text-light">Масла</a></li>
+                        <li><a href="{% url 'products:product_list' %}" class="text-light">Смазки</a></li>
                     </ul>
                 </div>
                 

@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название")
@@ -15,6 +15,9 @@ class Category(models.Model):
     
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("products:product_list_by_category", args=[self.slug])
 
 class Product(models.Model):
     name = models.CharField(max_length=200, verbose_name="Название")
@@ -35,6 +38,9 @@ class Product(models.Model):
     
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("products:product_detail", args=[self.slug])
 
 class Order(models.Model):
     STATUS_CHOICES = [

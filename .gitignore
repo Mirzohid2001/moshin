@@ -70,6 +70,8 @@ config/config/settings_dev.py
 
 .pyre/
 
+.config/settings_dev.py
+
 
 .mypy_cache/
 .dmypy.json

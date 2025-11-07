@@ -5,19 +5,17 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section" style="min-height: 40vh;">
+<section class="hero-section page-hero">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto text-center">
-                <div class="hero-content">
-                    <h1 class="hero-title animate-text">
-                        Контакты
-                    </h1>
-                    <p class="hero-subtitle">
-                        Свяжитесь с нами для получения консультации и сотрудничества
-                    </p>
-                </div>
-            </div>
+        <div class="hero-content">
+            <span class="highlight-badge mb-3">
+                <i class="fas fa-headset"></i>
+                Свяжитесь с нами
+            </span>
+            <h1 class="hero-title animate-text">Контакты</h1>
+            <p class="hero-subtitle">
+                Поделитесь задачей — мы подготовим индивидуальное предложение и ответим на любые вопросы о сотрудничестве.
+            </p>
         </div>
     </div>
 </section>
@@ -25,195 +23,159 @@
 <!-- Contact Section -->
 <section class="section">
     <div class="container">
-        <div class="row">
-            <!-- Contact Form -->
-            <div class="col-lg-8 mb-5">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title mb-4">
-                            <i class="fas fa-envelope me-2"></i>
-                            Отправить сообщение
-                        </h3>
-                        <form method="post">
-                            {% csrf_token %}
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="{{ form.name.id_for_label }}" class="form-label">Имя *</label>
-                                    {{ form.name }}
-                                    {% if form.name.errors %}
-                                    <div class="invalid-feedback d-block">
-                                        {{ form.name.errors.0 }}
-                                    </div>
-                                    {% endif %}
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="{{ form.email.id_for_label }}" class="form-label">Email *</label>
-                                    {{ form.email }}
-                                    {% if form.email.errors %}
-                                    <div class="invalid-feedback d-block">
-                                        {{ form.email.errors.0 }}
-                                    </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <label for="{{ form.phone.id_for_label }}" class="form-label">Телефон *</label>
-                                    {{ form.phone }}
-                                    {% if form.phone.errors %}
-                                    <div class="invalid-feedback d-block">
-                                        {{ form.phone.errors.0 }}
-                                    </div>
-                                    {% endif %}
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="{{ form.subject.id_for_label }}" class="form-label">Тема *</label>
-                                    {{ form.subject }}
-                                    {% if form.subject.errors %}
-                                    <div class="invalid-feedback d-block">
-                                        {{ form.subject.errors.0 }}
-                                    </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="{{ form.message.id_for_label }}" class="form-label">Сообщение *</label>
-                                {{ form.message }}
-                                {% if form.message.errors %}
-                                <div class="invalid-feedback d-block">
-                                    {{ form.message.errors.0 }}
-                                </div>
-                                {% endif %}
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg">
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <div class="product-info-card p-4 p-lg-5">
+                    <h2 class="mb-4">Отправить сообщение</h2>
+                    <form method="post" class="row g-3">
+                        {% csrf_token %}
+                        <div class="col-md-6">
+                            <label for="{{ form.name.id_for_label }}" class="form-label">Имя *</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                            <div class="invalid-feedback d-block">{{ form.name.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.email.id_for_label }}" class="form-label">Email *</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                            <div class="invalid-feedback d-block">{{ form.email.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.phone.id_for_label }}" class="form-label">Телефон *</label>
+                            {{ form.phone }}
+                            {% if form.phone.errors %}
+                            <div class="invalid-feedback d-block">{{ form.phone.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.subject.id_for_label }}" class="form-label">Тема *</label>
+                            {{ form.subject }}
+                            {% if form.subject.errors %}
+                            <div class="invalid-feedback d-block">{{ form.subject.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-12">
+                            <label for="{{ form.message.id_for_label }}" class="form-label">Сообщение *</label>
+                            {{ form.message }}
+                            {% if form.message.errors %}
+                            <div class="invalid-feedback d-block">{{ form.message.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
                                 <i class="fas fa-paper-plane me-2"></i>
                                 Отправить сообщение
                             </button>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <!-- Contact Info -->
-            <div class="col-lg-4">
-                {% if contact_info %}
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-map-marker-alt me-2"></i>
-                            Адрес
-                        </h5>
-                        <p class="card-text">{{ contact_info.address }}</p>
+            <div class="col-lg-5">
+                <div class="d-flex flex-column gap-4">
+                    {% if contact_info %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-map-marker-alt me-2 text-warning"></i>
+                                Адрес
+                            </h5>
+                            <p class="card-text mb-0">{{ contact_info.address }}</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-phone me-2"></i>
-                            Телефон
-                        </h5>
-                        <p class="card-text">
-                            <a href="tel:{{ contact_info.phone }}" class="text-decoration-none">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-phone me-2 text-warning"></i>
+                                Телефон
+                            </h5>
+                            <a href="tel:{{ contact_info.phone }}" class="card-text d-inline-flex align-items-center gap-2">
+                                <i class="fas fa-phone"></i>
                                 {{ contact_info.phone }}
                             </a>
-                        </p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-envelope me-2"></i>
-                            Email
-                        </h5>
-                        <p class="card-text">
-                            <a href="mailto:{{ contact_info.email }}" class="text-decoration-none">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-envelope me-2 text-warning"></i>
+                                Email
+                            </h5>
+                            <a href="mailto:{{ contact_info.email }}" class="card-text d-inline-flex align-items-center gap-2">
+                                <i class="fas fa-envelope"></i>
                                 {{ contact_info.email }}
                             </a>
-                        </p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-clock me-2"></i>
-                            Рабочие часы
-                        </h5>
-                        <p class="card-text">{{ contact_info.working_hours }}</p>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-clock me-2 text-warning"></i>
+                                Рабочие часы
+                            </h5>
+                            <p class="card-text mb-0">{{ contact_info.working_hours }}</p>
+                        </div>
                     </div>
-                </div>
-                {% else %}
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-map-marker-alt me-2"></i>
-                            Адрес
-                        </h5>
-                        <p class="card-text">Buxoro viloyati, Kogon shahar, Xoʻjabargi MFY, Amirobod ko'chasi, 91-b-uy</p>
+                    {% else %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-map-marker-alt me-2 text-warning"></i>
+                                Адрес
+                            </h5>
+                            <p class="card-text mb-0">Buxoro viloyati, Kogon shahar, Xoʻjabargi MFY, Amirobod ko'chasi, 91-b-uy</p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-phone me-2"></i>
-                            Телефон
-                        </h5>
-                        <p class="card-text">
-                            <a href="tel:+998914188569" class="text-decoration-none">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-phone me-2 text-warning"></i>
+                                Телефон
+                            </h5>
+                            <a href="tel:+998914188569" class="card-text d-inline-flex align-items-center gap-2">
+                                <i class="fas fa-phone"></i>
                                 +998 91 418 85 69
                             </a>
-                        </p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-envelope me-2"></i>
-                            Email
-                        </h5>
-                        <p class="card-text">
-                            <a href="mailto:isomeroil@gmail.com" class="text-decoration-none">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-envelope me-2 text-warning"></i>
+                                Email
+                            </h5>
+                            <a href="mailto:isomeroil@gmail.com" class="card-text d-inline-flex align-items-center gap-2">
+                                <i class="fas fa-envelope"></i>
                                 isomeroil@gmail.com
                             </a>
-                        </p>
+                        </div>
                     </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-clock me-2"></i>
-                            Рабочие часы
-                        </h5>
-                        <p class="card-text">Пн-Пт: 9:00 - 18:00<br>Сб: 9:00 - 14:00</p>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-clock me-2 text-warning"></i>
+                                Рабочие часы
+                            </h5>
+                            <p class="card-text mb-0">Пн-Пт: 9:00 - 18:00<br>Сб: 9:00 - 14:00</p>
+                        </div>
                     </div>
-                </div>
-                {% endif %}
+                    {% endif %}
 
-                <!-- Social Links -->
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-share-alt me-2"></i>
-                            Мы в социальных сетях
-                        </h5>
-                        <div class="d-flex gap-2">
-                            <a href="#" class="btn btn-outline-primary">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-info">
-                                <i class="fab fa-telegram"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-success">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                            <a href="#" class="btn btn-outline-danger">
-                                <i class="fab fa-instagram"></i>
-                            </a>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-share-alt me-2 text-warning"></i>
+                                Мы в социальных сетях
+                            </h5>
+                            <div class="d-flex gap-2">
+                            <a href="https://www.facebook.com/isomeroil" target="_blank" rel="noopener" class="btn btn-outline-primary"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://t.me/isomeroil" target="_blank" rel="noopener" class="btn btn-outline-info"><i class="fab fa-telegram"></i></a>
+                            <a href="https://wa.me/998914188569" target="_blank" rel="noopener" class="btn btn-outline-success"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.instagram.com/isomeroil" target="_blank" rel="noopener" class="btn btn-outline-danger"><i class="fab fa-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -226,23 +188,19 @@
 <section class="section bg-light">
     <div class="container">
         <h2 class="section-title">Как нас найти</h2>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body p-0">
-                        <div class="map-container" style="height: 400px;">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1192.964073964019!2d64.563900!3d39.775222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f4e8b2b2b2b2b2b%3A0x1234567890abcdef!2zQW1pcm9ib2Qga8O8Y2hhc2ksIDkxLWItdXksIEtPR09OLCBCdXhvcm8!5e0!3m2!1sru!2suz!4v1710000000000"
-                                width="100%" 
-                                height="100%" 
-                                style="border:0;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade"
-                                title="Isomer Oil - Kogon shahar, Buxoro viloyati">
-                            </iframe>
-                        </div>
-                    </div>
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="map-container" style="height: 420px;">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1192.964073964019!2d64.563900!3d39.775222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f4e8b2b2b2b2b2b%3A0x1234567890abcdef!2zQW1pcm9ib2Qga8O8Y2hhc2ksIDkxLWItdXksIEtPR09OLCBCdXhvcm8!5e0!3m2!1sru!2suz!4v1710000000000"
+                        width="100%"
+                        height="100%"
+                        style="border:0;"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Isomer Oil - Kogon shahar, Buxoro viloyati">
+                    </iframe>
                 </div>
             </div>
         </div>
@@ -253,8 +211,8 @@
 <section class="section">
     <div class="container">
         <h2 class="section-title">Часто задаваемые вопросы</h2>
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
                 <div class="accordion" id="faqAccordion">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="faq1">
@@ -264,12 +222,10 @@
                         </h2>
                         <div id="collapse1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
-                                Вы можете заказать продукцию через наш сайт, заполнив форму заказа на странице продукта, 
-                                или связаться с нами по телефону или email для получения консультации.
+                                Вы можете заказать продукцию через наш сайт, заполнив форму заказа на странице продукта, или связаться с нами по телефону или email для получения консультации.
                             </div>
                         </div>
                     </div>
-                    
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="faq2">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
@@ -278,12 +234,10 @@
                         </h2>
                         <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
-                                Мы принимаем оплату только банковским переводом. 
-                                Детали оплаты обсуждаются при оформлении заказа.
+                                Мы принимаем оплату банковским переводом. Детали оплаты обсуждаются при оформлении заказа.
                             </div>
                         </div>
                     </div>
-                    
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="faq3">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
@@ -292,12 +246,10 @@
                         </h2>
                         <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
-                                Да, мы осуществляем доставку по всему Узбекистану. Стоимость и сроки доставки 
-                                зависят от объема заказа и региона доставки.
+                                Да, мы осуществляем доставку по всему Узбекистану. Стоимость и сроки зависят от объёма заказа и региона доставки.
                             </div>
                         </div>
                     </div>
-                    
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="faq4">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4">
@@ -306,8 +258,7 @@
                         </h2>
                         <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                             <div class="accordion-body">
-                                Да, вся наша продукция имеет соответствующие сертификаты качества и соответствует 
-                                международным стандартам. Мы можем предоставить сертификаты по запросу.
+                                Да, вся наша продукция имеет соответствующие сертификаты качества и соответствует международным стандартам. Мы предоставим их по запросу.
                             </div>
                         </div>
                     </div>
@@ -316,4 +267,5 @@
         </div>
     </div>
 </section>
-{% endblock %} 
+{% endblock %}
+

@@ -20,64 +20,120 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Анимация появления элементов при прокрутке
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-            }
+    // Анимации по data-атрибутам
+    const animatedNodes = document.querySelectorAll('[data-animate]');
+    if (animatedNodes.length) {
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    animationObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -80px 0px'
         });
-    }, observerOptions);
 
-    // Наблюдение за элементами для анимации
-    const animateElements = document.querySelectorAll('.card, .capability-item, .product-card');
-    animateElements.forEach(el => {
-        observer.observe(el);
-    });
+        animatedNodes.forEach(node => {
+            const animation = node.getAttribute('data-animate') || 'fade-up';
+            node.classList.add('animate-item', `animate-${animation}`);
+
+            const delay = node.getAttribute('data-delay');
+            if (delay) {
+                node.style.setProperty('--animation-delay', delay);
+            }
+
+            animationObserver.observe(node);
+        });
+    }
 
     // Изменение навигации при прокрутке
-    let lastScrollTop = 0;
     const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', function() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > 100) {
-            navbar.classList.add('navbar-scrolled');
-        } else {
-            navbar.classList.remove('navbar-scrolled');
-        }
-        
-        lastScrollTop = scrollTop;
-    });
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        }, { passive: true });
+    }
+
+    // Интерактивное свечение карточек
+    const interactiveCards = document.querySelectorAll('.interactive-card');
+    if (interactiveCards.length) {
+        const setGlow = (card, x, y, intensity = 0.8) => {
+            card.style.setProperty('--mouse-x', `${x}%`);
+            card.style.setProperty('--mouse-y', `${y}%`);
+            card.style.setProperty('--glow-opacity', intensity);
+        };
+
+        const resetGlow = (card) => {
+            card.style.setProperty('--glow-opacity', '0');
+        };
+
+        interactiveCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.setProperty('--glow-opacity', '0.4');
+            });
+
+            card.addEventListener('mousemove', (event) => {
+                const bounds = card.getBoundingClientRect();
+                const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+                const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+                setGlow(card, x, y);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                resetGlow(card);
+            });
+
+            card.addEventListener('touchmove', (event) => {
+                const touch = event.touches[0];
+                if (!touch) {
+                    return;
+                }
+                const bounds = card.getBoundingClientRect();
+                const x = ((touch.clientX - bounds.left) / bounds.width) * 100;
+                const y = ((touch.clientY - bounds.top) / bounds.height) * 100;
+                setGlow(card, x, y, 0.7);
+            }, { passive: true });
+
+            card.addEventListener('touchend', () => {
+                resetGlow(card);
+            });
+        });
+    }
 
     // Анимация счетчиков
-function animateCounters() {
-    const counters = document.querySelectorAll('.counter, .stat-number');
-    counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const duration = 2000; // 2 секунды
-        const increment = target / (duration / 16); // 60 FPS
-        let current = 0;
-        
-        const updateCounter = () => {
-            current += increment;
-            if (current < target) {
-                counter.textContent = Math.floor(current);
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = target;
+    const animateCounters = () => {
+        const counters = document.querySelectorAll('.counter, .stat-number');
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'), 10);
+            if (Number.isNaN(target)) {
+                return;
             }
-        };
-        
-        updateCounter();
-    });
-}
+
+            const duration = 2000; // 2 секунды
+            const increment = target / (duration / 16); // ~60 FPS
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current).toLocaleString('ru-RU');
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target.toLocaleString('ru-RU');
+                }
+            };
+
+            updateCounter();
+        });
+    };
 
     // Запуск анимации счетчиков при появлении
     const counterSection = document.querySelector('.counters-section');
@@ -156,10 +212,6 @@ function animateCounters() {
     }
 
     // Анимация загрузки страницы
-    window.addEventListener('load', function() {
-        document.body.classList.add('loaded');
-    });
-
     // Интерактивная карта (если есть)
     const mapContainer = document.querySelector('.map-container');
     if (mapContainer) {
@@ -213,7 +265,33 @@ function animateCounters() {
             const speed = element.getAttribute('data-speed') || 0.5;
             element.style.transform = `translateY(${scrolled * speed}px)`;
         });
-    });
+    }, { passive: true });
+
+    // Интерактивный параллакс в hero
+    const heroSection = document.querySelector('.hero-section');
+    if (heroSection) {
+        const parallaxLayers = heroSection.querySelectorAll('[data-parallax]');
+
+        const handleParallax = (event) => {
+            const bounds = heroSection.getBoundingClientRect();
+            const relativeX = (event.clientX - bounds.left) / bounds.width - 0.5;
+            const relativeY = (event.clientY - bounds.top) / bounds.height - 0.5;
+
+            parallaxLayers.forEach(layer => {
+                const depth = parseFloat(layer.getAttribute('data-parallax')) || 10;
+                const translateX = relativeX * depth;
+                const translateY = relativeY * depth;
+                layer.style.transform = `translate3d(${translateX}px, ${translateY}px, 0)`;
+            });
+        };
+
+        heroSection.addEventListener('mousemove', handleParallax);
+        heroSection.addEventListener('mouseleave', () => {
+            parallaxLayers.forEach(layer => {
+                layer.style.transform = 'translate3d(0, 0, 0)';
+            });
+        });
+    }
 
     // Анимация текста
     function animateText(element) {
@@ -250,66 +328,3 @@ function animateCounters() {
     console.log('🚀 Isomer Oil website loaded successfully!');
     console.log('💡 For support, contact: info@isomeroil.uz');
 });
-
-// Дополнительные стили для анимаций
-const additionalStyles = `
-    .navbar-scrolled {
-        background: rgba(26, 26, 26, 0.95) !important;
-        backdrop-filter: blur(15px);
-    }
-    
-    .notification {
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        z-index: 1060;
-        max-width: 400px;
-    }
-    
-    .scroll-to-top {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background: var(--gradient-secondary);
-        border: none;
-        border-radius: 50%;
-        color: var(--primary-color);
-        font-size: 1.2rem;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-    }
-    
-    .scroll-to-top.show {
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .scroll-to-top:hover {
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-lg);
-    }
-    
-    .filter-btn.active {
-        background: var(--gradient-secondary);
-        color: var(--primary-color);
-    }
-    
-    .loaded {
-        opacity: 1;
-    }
-    
-    body {
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
-`;
-
-// Добавляем стили в head
-const styleSheet = document.createElement('style');
-styleSheet.textContent = additionalStyles;
-document.head.appendChild(styleSheet); 

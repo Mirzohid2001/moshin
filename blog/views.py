@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
+
+from products.models import Product
+
 from .models import CompanyInfo, CompanyCapability, BlogPost
 
 def home(request):
@@ -7,11 +10,17 @@ def home(request):
     company_info = CompanyInfo.objects.first()
     capabilities = CompanyCapability.objects.filter(is_active=True)
     recent_posts = BlogPost.objects.filter(published=True)[:3]
+    featured_products = (
+        Product.objects.filter(is_active=True)
+        .select_related('category')
+        .order_by('-created_at')[:4]
+    )
     
     context = {
         'company_info': company_info,
         'capabilities': capabilities,
         'recent_posts': recent_posts,
+        'featured_products': featured_products,
     }
     return render(request, 'blog/home.html', context)
 

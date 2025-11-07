@@ -5,19 +5,17 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="hero-section" style="min-height: 60vh;">
+<section class="hero-section page-hero">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto text-center">
-                <div class="hero-content">
-                    <h1 class="hero-title animate-text">
-                        О компании
-                    </h1>
-                    <p class="hero-subtitle">
-                        Узнайте больше о нашей истории, миссии и ценностях
-                    </p>
-                </div>
-            </div>
+        <div class="hero-content">
+            <span class="highlight-badge mb-3">
+                <i class="fas fa-circle-nodes"></i>
+                О компании Isomer Oil
+            </span>
+            <h1 class="hero-title">История. Миссия. Ценности.</h1>
+            <p class="hero-subtitle">
+                Узнайте больше о нашем пути, технологиях и людях, которые создают устойчивое энергетическое будущее для страны.
+            </p>
         </div>
     </div>
 </section>
@@ -25,104 +23,108 @@
 <!-- About Content Section -->
 <section class="section">
     <div class="container">
-        <div class="row">
+        <div class="row g-5 align-items-start">
             <div class="col-lg-8">
-                {% if company_info %}
-                <div class="mb-5">
-                    <h2 class="section-title text-start">{{ company_info.title }}</h2>
-                    {% if company_info.image %}
-                    <img src="{{ company_info.image.url }}" alt="{{ company_info.title }}" class="img-fluid rounded mb-4">
-                    {% endif %}
-                    <div class="content">
-                        {{ company_info.content|linebreaks }}
-                    </div>
-                </div>
-                {% else %}
-                <div class="mb-5">
-                    <h2 class="section-title text-start">Isomer Oil - Ваш надежный партнер</h2>
-                    <div class="content">
-                        <p class="lead">
-                            Isomer Oil является ведущим нефтеперерабатывающим предприятием Узбекистана, 
-                            специализирующимся на производстве высококачественных нефтепродуктов для современной промышленности.
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-body p-4 p-lg-5">
+                        {% if company_info %}
+                        <h2 class="mb-4">{{ company_info.title }}</h2>
+                        {% if company_info.image %}
+                        <img src="{{ company_info.image.url }}" alt="{{ company_info.title }}" class="img-fluid mb-4">
+                        {% endif %}
+                        <div class="content">
+                            {{ company_info.content|linebreaks }}
+                        </div>
+                        {% else %}
+                        <h2 class="mb-4">Isomer Oil — ваш стратегический партнёр</h2>
+                        <p class="lead mb-4">
+                            Isomer Oil является ведущим нефтеперерабатывающим предприятием Узбекистана, специализирующимся на производстве высококачественных нефтепродуктов для современной промышленности.
                         </p>
-                        
-                        <h3>Наша история</h3>
+                        <h3 class="mt-4">Наша история</h3>
                         <p>
-                            Основанная в 1999 году, компания Isomer Oil прошла долгий путь развития от небольшого 
-                            предприятия до одного из крупнейших нефтеперерабатывающих заводов в регионе. 
-                            За это время мы накопили бесценный опыт и создали надежную репутацию среди клиентов.
+                            Основанная в 1999 году, компания Isomer Oil прошла долгий путь развития от небольшого предприятия до одного из крупнейших нефтеперерабатывающих заводов в регионе. За это время мы накопили бесценный опыт и создали репутацию надёжного партнёра.
                         </p>
-                        
-                        <h3>Наша миссия</h3>
+                        <h3 class="mt-4">Наша миссия</h3>
                         <p>
-                            Мы стремимся обеспечить энергетическую безопасность и устойчивое развитие региона 
-                            через производство высококачественных нефтепродуктов, соответствующих международным стандартам.
+                            Мы обеспечиваем энергетическую безопасность и устойчивое развитие региона через производство нефтепродуктов, соответствующих международным стандартам качества и экологической ответственности.
                         </p>
-                        
-                        <h3>Наши ценности</h3>
-                        <ul>
-                            <li><strong>Качество:</strong> Мы не идем на компромиссы в вопросах качества продукции</li>
-                            <li><strong>Инновации:</strong> Постоянно внедряем новые технологии и методы производства</li>
-                            <li><strong>Экологичность:</strong> Заботимся об окружающей среде и минимизируем воздействие на природу</li>
-                            <li><strong>Надежность:</strong> Выполняем все обязательства перед клиентами и партнерами</li>
-                            <li><strong>Развитие:</strong> Инвестируем в развитие персонала и технологий</li>
+                        <h3 class="mt-4">Наши ценности</h3>
+                        <ul class="list-check">
+                            <li>
+                                <span class="icon-bullet"><i class="fas fa-check"></i></span>
+                                <strong>Качество:</strong> мы не идём на компромиссы в вопросах качества продукции.
+                            </li>
+                            <li>
+                                <span class="icon-bullet"><i class="fas fa-check"></i></span>
+                                <strong>Инновации:</strong> постоянно внедряем новые технологии и методы производства.
+                            </li>
+                            <li>
+                                <span class="icon-bullet"><i class="fas fa-check"></i></span>
+                                <strong>Экологичность:</strong> заботимся об окружающей среде и минимизируем воздействие на природу.
+                            </li>
+                            <li>
+                                <span class="icon-bullet"><i class="fas fa-check"></i></span>
+                                <strong>Надёжность:</strong> выполняем все обязательства перед клиентами и партнёрами.
+                            </li>
+                            <li>
+                                <span class="icon-bullet"><i class="fas fa-check"></i></span>
+                                <strong>Развитие:</strong> инвестируем в развитие персонала и технологий.
+                            </li>
                         </ul>
+                        {% endif %}
                     </div>
                 </div>
-                {% endif %}
             </div>
-            
             <div class="col-lg-4">
-                <!-- Sidebar -->
                 <div class="card mb-4">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <i class="fas fa-chart-line me-2"></i>
+                            <i class="fas fa-chart-line me-2 text-warning"></i>
                             Наши достижения
                         </h5>
-                        <ul class="list-unstyled">
-                            <li class="mb-2">
-                                <i class="fas fa-check text-success me-2"></i>
-                                Более 5 лет опыта
+                        <ul class="list-check mt-3">
+                            <li>
+                                <span class="icon-bullet"><i class="fas fa-check"></i></span>
+                                Более 5 лет опыта на рынке
                             </li>
-                            <li class="mb-2">
-                                <i class="fas fa-check text-success me-2"></i>
-                                ISO 9001 сертификация
+                            <li>
+                                <span class="icon-bullet"><i class="fas fa-check"></i></span>
+                                Сертификация ISO 9001
                             </li>
-                            <li class="mb-2">
-                                <i class="fas fa-check text-success me-2"></i>
-                                Экологические стандарты
+                            <li>
+                                <span class="icon-bullet"><i class="fas fa-check"></i></span>
+                                Экологические стандарты ЕС
                             </li>
-                            <li class="mb-2">
-                                <i class="fas fa-check text-success me-2"></i>
+                            <li>
+                                <span class="icon-bullet"><i class="fas fa-check"></i></span>
                                 Более 100 довольных клиентов
                             </li>
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <i class="fas fa-download me-2"></i>
+                            <i class="fas fa-download me-2 text-warning"></i>
                             Документы
                         </h5>
-                        <ul class="list-unstyled">
+                        <ul class="list-unstyled mt-3">
                             <li class="mb-2">
-                                <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-file-pdf me-2"></i>
+                                <a href="{% url 'contact:contact' %}" class="d-flex align-items-center">
+                                    <span class="icon-bullet me-3"><i class="fas fa-file-pdf"></i></span>
                                     Сертификат качества
                                 </a>
                             </li>
                             <li class="mb-2">
-                                <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-file-pdf me-2"></i>
+                                <a href="{% url 'contact:contact' %}" class="d-flex align-items-center">
+                                    <span class="icon-bullet me-3"><i class="fas fa-file-pdf"></i></span>
                                     Экологический сертификат
                                 </a>
                             </li>
-                            <li class="mb-2">
-                                <a href="#" class="text-decoration-none">
-                                    <i class="fas fa-file-pdf me-2"></i>
+                            <li>
+                                <a href="{% url 'contact:contact' %}" class="d-flex align-items-center">
+                                    <span class="icon-bullet me-3"><i class="fas fa-file-pdf"></i></span>
                                     Лицензия на деятельность
                                 </a>
                             </li>
@@ -139,10 +141,13 @@
 <section class="section bg-light">
     <div class="container">
         <h2 class="section-title">Наши возможности</h2>
-        <div class="row">
+        <p class="section-lead">
+            Мы развиваем инфраструктуру и технологии, чтобы обеспечивать непрерывные поставки и высокую эффективность производственных процессов.
+        </p>
+        <div class="row g-4">
             {% for capability in capabilities %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="capability-item">
+            <div class="col-lg-4 col-md-6">
+                <div class="capability-item h-100">
                     <div class="capability-icon">
                         <i class="{{ capability.icon }}"></i>
                     </div>
@@ -160,48 +165,51 @@
 <section class="section">
     <div class="container">
         <h2 class="section-title">Наша команда</h2>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-center">
+        <p class="section-lead">
+            Главное преимущество Isomer Oil — сплочённая команда инженеров, технологов и управленцев, которые делают производство безопасным и эффективным.
+        </p>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100">
                     <div class="card-body">
-                        <div class="capability-icon mb-3">
+                        <div class="capability-icon mb-3 mx-auto">
                             <i class="fas fa-user-tie"></i>
                         </div>
                         <h5 class="card-title">Руководство</h5>
-                        <p class="card-text">Опытные менеджеры с многолетним стажем в нефтяной отрасли</p>
+                        <p class="card-text">Опытные менеджеры с многолетним стажем в нефтяной отрасли.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100">
                     <div class="card-body">
-                        <div class="capability-icon mb-3">
+                        <div class="capability-icon mb-3 mx-auto">
                             <i class="fas fa-cogs"></i>
                         </div>
                         <h5 class="card-title">Производство</h5>
-                        <p class="card-text">Квалифицированные инженеры и техники</p>
+                        <p class="card-text">Квалифицированные инженеры и техники, отвечающие за бесперебойную работу оборудования.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100">
                     <div class="card-body">
-                        <div class="capability-icon mb-3">
+                        <div class="capability-icon mb-3 mx-auto">
                             <i class="fas fa-flask"></i>
                         </div>
                         <h5 class="card-title">Лаборатория</h5>
-                        <p class="card-text">Специалисты по контролю качества</p>
+                        <p class="card-text">Специалисты по контролю качества проверяют каждую партию продукции.</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="card text-center h-100">
                     <div class="card-body">
-                        <div class="capability-icon mb-3">
+                        <div class="capability-icon mb-3 mx-auto">
                             <i class="fas fa-headset"></i>
                         </div>
                         <h5 class="card-title">Поддержка</h5>
-                        <p class="card-text">Отдел обслуживания клиентов</p>
+                        <p class="card-text">Отдел обслуживания клиентов сопровождает партнёров на всех этапах.</p>
                     </div>
                 </div>
             </div>
@@ -212,18 +220,23 @@
 <!-- CTA Section -->
 <section class="section" style="background: var(--gradient-primary);">
     <div class="container">
-        <div class="row text-center">
-            <div class="col-lg-8 mx-auto">
-                <h2 class="text-white mb-4">Хотите узнать больше?</h2>
-                <p class="text-white mb-4">
-                    Свяжитесь с нами для получения дополнительной информации о нашей компании
-                </p>
-                <a href="{% url 'contact:contact' %}" class="btn btn-primary btn-lg">
-                    <i class="fas fa-phone me-2"></i>
-                    Связаться с нами
-                </a>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card glass-effect text-center p-4">
+                    <div class="card-body">
+                        <h2 class="text-white mb-3">Хотите узнать больше?</h2>
+                        <p class="text-white-50 mb-4">
+                            Свяжитесь с нашей командой, чтобы получить подробную презентацию Isomer Oil и обсудить возможности сотрудничества.
+                        </p>
+                        <a href="{% url 'contact:contact' %}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-phone me-2"></i>
+                            Связаться с нами
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
-{% endblock %} 
+{% endblock %}
+
