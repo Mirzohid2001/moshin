@@ -1508,6 +1508,25 @@ main {
     .hero-image {
         margin-top: 2.5rem;
     }
+
+    .hero-scroll-indicator {
+        bottom: 1.8rem;
+    }
+
+    .hero-section .hero-image {
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .navbar .btn {
+        padding: 0.6rem 1.4rem;
+    }
 }
 
 @media (max-width: 767.98px) {
@@ -1543,6 +1562,67 @@ main {
     .testimonial-card {
         padding: 1.8rem 1.4rem;
     }
+
+    .hero-scroll-indicator {
+        display: none;
+    }
+
+    .hero-section {
+        padding-top: 6rem;
+        padding-bottom: 4.5rem;
+    }
+
+    .hero-section .hero-image {
+        max-width: 320px;
+    }
+
+    .counters-section .row {
+        row-gap: 1.5rem;
+    }
+
+    .stat-item {
+        padding: 1.8rem 1.6rem;
+    }
+
+    .stat-number {
+        font-size: 2.4rem;
+    }
+
+    .product-card,
+    .capability-item,
+    .testimonial-card {
+        border-radius: 18px;
+    }
+
+    .product-card .card-body,
+    .capability-item {
+        padding: 1.6rem 1.4rem;
+    }
+
+    .product-card .card-body .btn,
+    .capability-item .btn {
+        width: 100%;
+    }
+
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 0.95rem;
+        padding: 0.75rem 0;
+    }
+
+    .navbar-collapse {
+        background: rgba(13, 31, 60, 0.92);
+        border-radius: 16px;
+        padding: 1rem;
+        margin-top: 0.4rem;
+    }
+
+    .partner-logo {
+        max-height: 64px;
+    }
 }
 
 @media (max-width: 575.98px) {
@@ -1556,6 +1636,49 @@ main {
 
     .partner-logo {
         height: 72px;
+    }
+
+    .navbar .btn {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2.1rem, 9vw, 2.6rem);
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .product-card .card-body {
+        gap: 0.9rem;
+    }
+
+    .card-body {
+        padding: 1.3rem;
+    }
+
+    .stat-item {
+        padding: 1.6rem 1.3rem;
+        border-radius: 16px;
+    }
+
+    .stat-icon {
+        font-size: 2.4rem;
+        margin-bottom: 0.9rem;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+
+    .footer {
+        text-align: center;
+    }
+
+    .footer .social-links a {
+        margin-bottom: 0.5rem;
     }
 }
 
