@@ -85,8 +85,12 @@
                                     {{ order_form.customer_phone }}
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="{{ order_form.quantity.id_for_label }}" class="form-label">Количество *</label>
+                                    <label for="{{ order_form.quantity.id_for_label }}" class="form-label">Количество (в тоннах) *</label>
                                     {{ order_form.quantity }}
+                                    <small class="form-text text-muted d-block mt-1">
+                                        <i class="fas fa-info-circle me-1"></i>
+                                        Укажите количество продукции в тоннах
+                                    </small>
                                 </div>
                                 <div class="col-12">
                                     <label for="{{ order_form.message.id_for_label }}" class="form-label">Дополнительная информация</label>

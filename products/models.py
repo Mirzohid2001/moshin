@@ -54,7 +54,7 @@ class Order(models.Model):
     customer_name = models.CharField(max_length=200, verbose_name="Имя клиента")
     customer_email = models.EmailField(verbose_name="Email клиента")
     customer_phone = models.CharField(max_length=20, verbose_name="Телефон клиента")
-    quantity = models.PositiveIntegerField(default=1, verbose_name="Количество")
+    quantity = models.PositiveIntegerField(default=1, verbose_name="Количество (тонн)")
     message = models.TextField(blank=True, verbose_name="Дополнительное сообщение")
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new', verbose_name="Статус")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")

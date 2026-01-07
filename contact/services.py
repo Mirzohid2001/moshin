@@ -44,6 +44,16 @@ class TelegramService:
     @staticmethod
     def format_order_message(order):
         """Форматирование заказа для Telegram"""
+        # Коэффициент перевода тонн в литры (для нефтепродуктов)
+        # Для дизельного топлива: ~1150 л/тонна, для бензина: ~1350 л/тонна
+        # Используем средний коэффициент 1200 л/тонна
+        LITERS_PER_TON = 1200
+        
+        quantity_tons = order.quantity
+        price_per_liter = order.product.price
+        total_liters = quantity_tons * LITERS_PER_TON
+        total_cost = price_per_liter * total_liters
+        
         message = f"""
 🛒 <b>Новый заказ продукта</b>
 
@@ -52,9 +62,9 @@ class TelegramService:
 📞 <b>Телефон:</b> {order.customer_phone}
 
 📦 <b>Продукт:</b> {order.product.name}
-🔢 <b>Количество:</b> {order.quantity}
-💰 <b>Цена за единицу:</b> {order.product.price} сум
-💵 <b>Общая стоимость:</b> {order.product.price * order.quantity} сум
+🔢 <b>Количество:</b> {quantity_tons} тонн ({total_liters:,.0f} литров)
+💰 <b>Цена за литр:</b> {price_per_liter:,.2f} сум
+💵 <b>Общая стоимость:</b> {total_cost:,.2f} сум
 
 💬 <b>Дополнительное сообщение:</b>
 {order.message if order.message else 'Не указано'}

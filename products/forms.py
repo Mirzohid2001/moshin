@@ -21,7 +21,8 @@ class OrderForm(forms.ModelForm):
             'quantity': forms.NumberInput(attrs={
                 'class': 'form-control',
                 'min': 1,
-                'value': 1
+                'value': 1,
+                'placeholder': 'Количество в тоннах'
             }),
             'message': forms.Textarea(attrs={
                 'class': 'form-control',
